@@ -9,7 +9,7 @@ if "s" in method or "S" in method:
     seconds = int(raw_input("Enter photo interval in seconds: >: "))
 
 elif "m" in method or "M" in method:
-    minutes = int(raw_input("Enter photo internval in minutes: >: "))
+    minutes = int(raw_input("Enter photo interval in minutes: >: "))
     seconds = minutes * 60
 
 else:
