@@ -7,7 +7,7 @@ import subprocess
 def snap_pics(seconds):
     try:
         with picamera.PiCamera() as camera:
-            # resolutions (2592x1944) (1024x768)
+            # resolutions (2592x1944) (1024x768)(800x600)(640x480)
             camera.resolution = (1024, 768)
             camera.start_preview()
             time.sleep(2)
@@ -27,9 +27,9 @@ def snap_pics(seconds):
         if choice == "1":
             timelapse_parameters()
         elif choice == "2":
-            print "Creating Video....this may take a while"
             confirm = raw_input("Are you sure (y/n)? It may be quicker to copy the files to a more powerful computer. :> ")
             if "y" in confirm or "Y" in confirm:
+                print "Creating Video....this may take a while"
                 time.sleep(2)
                 cmdline = "avconv -r 10 -i tlapse%04d.jpg -r 10 -vcodec libx264 -crf 20 -g 15 timelapse.mp4"
                 avconv = cmdline.split(' ')
@@ -39,6 +39,7 @@ def snap_pics(seconds):
             else:
                 print "Copy all jpg's to a more powerful computer to create"
                 print "your timelapse video using Avconv. Goodbye"
+                exit(0)
         else:
             print "Program ended. Goodbye"
             exit(0)
@@ -59,9 +60,9 @@ def timelapse_parameters():
         print "Invalid entry - Try again"
         timelapse_parameters()
 
-print "The following script will take a series of pictures and then give you the option"
+print "The following script will take a series of pictures and give you the option"
 print "of creating a timelapse video."
-print "You may stop taking pictures at any time by pressing CTRL-C."
+print "To stop taking pictures and create a video enter CTRL-C."
 
 raw_input("Press any key to get started")
 timelapse_parameters()
